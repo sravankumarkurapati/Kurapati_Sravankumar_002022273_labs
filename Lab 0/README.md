@@ -1,1 +1,1 @@
-The purpose of this project is to print Hello World
+The purpose of this project is to print Hello, World
