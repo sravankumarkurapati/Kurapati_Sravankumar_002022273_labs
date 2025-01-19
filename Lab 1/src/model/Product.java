@@ -6,7 +6,8 @@ package model;
 
 /**
  *
- * @author sravankumarkurapati
+ * @author sravankumarkurapati - 19-Jan-2025
+ * The purpose 
  */
 public class Product {
     String name;
