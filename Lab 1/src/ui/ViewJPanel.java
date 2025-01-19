@@ -8,7 +8,7 @@ import model.Product;
 
 /**
  *
- * @author sravankumarkurapati
+ * @author sravankumarkurapati - 19-Jan-2025
  */
 public class ViewJPanel extends javax.swing.JPanel {
 
