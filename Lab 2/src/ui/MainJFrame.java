@@ -28,15 +28,20 @@ public class MainJFrame extends javax.swing.JFrame {
 
         splitPane = new javax.swing.JSplitPane();
         controlPanel = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnCreateVitals = new javax.swing.JButton();
+        btnViewVitals = new javax.swing.JButton();
         workArea = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton3.setText("Create Vitals");
+        btnCreateVitals.setText("Create Vitals");
+        btnCreateVitals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateVitalsActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("View Vitals");
+        btnViewVitals.setText("View Vitals");
 
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
@@ -45,20 +50,20 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(btnCreateVitals)
+                    .addComponent(btnViewVitals))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        controlPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton3, jButton4});
+        controlPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCreateVitals, btnViewVitals});
 
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addGap(136, 136, 136)
-                .addComponent(jButton3)
+                .addComponent(btnCreateVitals)
                 .addGap(51, 51, 51)
-                .addComponent(jButton4)
+                .addComponent(btnViewVitals)
                 .addContainerGap(281, Short.MAX_VALUE))
         );
 
@@ -94,6 +99,12 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCreateVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateVitalsActionPerformed
+        // TODO add your handling code here:
+        CreateJPanel createJPanel = new CreateJPanel();
+        splitPane.setRightComponent(createJPanel);
+    }//GEN-LAST:event_btnCreateVitalsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,9 +142,9 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCreateVitals;
+    private javax.swing.JButton btnViewVitals;
     private javax.swing.JPanel controlPanel;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JSplitPane splitPane;
     private javax.swing.JPanel workArea;
     // End of variables declaration//GEN-END:variables
