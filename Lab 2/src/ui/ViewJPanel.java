@@ -16,6 +16,7 @@ import model.VitalSignsHistory;
 public class ViewJPanel extends javax.swing.JPanel {
 
     VitalSignsHistory vitalSignsHistory;
+
     /**
      * Creates new form ViewJPanel
      */
@@ -60,6 +61,11 @@ public class ViewJPanel extends javax.swing.JPanel {
         });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         lblDate.setText("Date:");
 
@@ -170,21 +176,40 @@ public class ViewJPanel extends javax.swing.JPanel {
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
         int selectedIndex = tblVitals.getSelectedRow();
-        System.out.println("Selected index is:"+selectedIndex);
-        if(selectedIndex < 0){
+        System.out.println("Selected index is:" + selectedIndex);
+        if (selectedIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row first", "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-        
-        DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
-        VitalSigns selectedVitals = (VitalSigns) model.getValueAt(selectedIndex, 0);
-        
-        if(selectedVitals != null){
-            txtTemperature.setText(Double.toString(selectedVitals.getTemperature()));
-            txtBloodPressure.setText(Double.toString(selectedVitals.getBloodPressure()));
-            txtPulse.setText(Integer.toString(selectedVitals.getPulse()));
-            txtDate.setText(selectedVitals.getDate());
+        } else {
+            DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
+            VitalSigns selectedVitals = (VitalSigns) model.getValueAt(selectedIndex, 0);
+
+            if (selectedVitals != null) {
+                txtTemperature.setText(Double.toString(selectedVitals.getTemperature()));
+                txtBloodPressure.setText(Double.toString(selectedVitals.getBloodPressure()));
+                txtPulse.setText(Integer.toString(selectedVitals.getPulse()));
+                txtDate.setText(selectedVitals.getDate());
+            }
         }
     }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = tblVitals.getSelectedRow();
+        System.out.println("Selected index is:" + selectedIndex);
+        if (selectedIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row first", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
+            VitalSigns selectedVitals = (VitalSigns) model.getValueAt(selectedIndex, 0);
+
+            //Implement the deletion
+            if (selectedVitals != null) {
+                vitalSignsHistory.removeVitalSigns(selectedVitals);
+            }
+            //Update the table
+            populateTable();
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -203,12 +228,12 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtTemperature;
     // End of variables declaration//GEN-END:variables
 
-    private void populateTable(){
-        
+    private void populateTable() {
+
         DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
         model.setRowCount(0);
-        for (VitalSigns vs : vitalSignsHistory.getHistory()){
-            System.out.println("To check if data is coming:"+vs.getDate());
+        for (VitalSigns vs : vitalSignsHistory.getHistory()) {
+            System.out.println("To check if data is coming:" + vs.getDate());
             Object[] row = new Object[4];
             row[0] = vs;
             row[1] = vs.getTemperature();
@@ -216,6 +241,6 @@ public class ViewJPanel extends javax.swing.JPanel {
             row[3] = vs.getPulse();
             model.addRow(row);
         }
-                
+
     }
 }

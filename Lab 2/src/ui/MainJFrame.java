@@ -11,7 +11,7 @@ import model.VitalSignsHistory;
  * @author sravankumarkurapati
  */
 public class MainJFrame extends javax.swing.JFrame {
-    
+
     VitalSignsHistory vitalSignsHistory;
 
     /**

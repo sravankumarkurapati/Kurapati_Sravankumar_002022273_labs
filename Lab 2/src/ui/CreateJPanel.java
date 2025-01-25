@@ -5,7 +5,6 @@
 package ui;
 
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import model.VitalSigns;
 import model.VitalSignsHistory;
 
@@ -16,6 +15,7 @@ import model.VitalSignsHistory;
 public class CreateJPanel extends javax.swing.JPanel {
 
     VitalSignsHistory vitalSignsHistory;
+
     /**
      * Creates new form CreateJPanel
      */
@@ -125,25 +125,25 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-       Double temperature = Double.parseDouble(txtTemperature.getText());
-       Double bloodPressure = Double.parseDouble(txtBloodPressure.getText());
-       int pulse = Integer.parseInt(txtPulse.getText());
-       String date = txtDate.getText();
-       
-       VitalSigns newVs = vitalSignsHistory.addNewVitals();
-       newVs.setTemperature(temperature);
-       newVs.setBloodPressure(bloodPressure);
-       newVs.setPulse(pulse);
-       newVs.setDate(date);
-       
-       //Show user a confirmation dialogue
-       JOptionPane.showMessageDialog(this, "New Vital signs created","Success",JOptionPane.INFORMATION_MESSAGE);
-       
-       //Cleanup the form
-       txtTemperature.setText("");
-       txtBloodPressure.setText("");
-       txtPulse.setText("");
-       txtDate.setText("");
+        Double temperature = Double.parseDouble(txtTemperature.getText());
+        Double bloodPressure = Double.parseDouble(txtBloodPressure.getText());
+        int pulse = Integer.parseInt(txtPulse.getText());
+        String date = txtDate.getText();
+
+        VitalSigns newVs = vitalSignsHistory.addNewVitals();
+        newVs.setTemperature(temperature);
+        newVs.setBloodPressure(bloodPressure);
+        newVs.setPulse(pulse);
+        newVs.setDate(date);
+
+        //Show user a confirmation dialogue
+        JOptionPane.showMessageDialog(this, "New Vital signs created", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+        //Cleanup the form
+        txtTemperature.setText("");
+        txtBloodPressure.setText("");
+        txtPulse.setText("");
+        txtDate.setText("");
     }//GEN-LAST:event_saveBtnActionPerformed
 
 

@@ -5,7 +5,9 @@
 package model;
 
 /**
- * The purpose of this class is to store details of Vitals. Setter and Getter methods have been provided
+ * The purpose of this class is to store details of Vitals. Setter and Getter
+ * methods have been provided
+ *
  * @author sravankumarkurapati
  * @version 1.0
  * @since 2025-01-24
