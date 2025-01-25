@@ -4,17 +4,23 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
+import model.VitalSigns;
+import model.VitalSignsHistory;
+
 /**
  *
  * @author sravankumarkurapati
  */
 public class CreateJPanel extends javax.swing.JPanel {
 
+    VitalSignsHistory vitalSignsHistory;
     /**
      * Creates new form CreateJPanel
      */
-    public CreateJPanel() {
+    public CreateJPanel(VitalSignsHistory vitalSignsHistory) {
         initComponents();
+        this.vitalSignsHistory = vitalSignsHistory;
     }
 
     /**
@@ -50,6 +56,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         lblDate.setText("Date:");
 
         saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -110,6 +121,30 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addContainerGap(188, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:
+       Double temperature = Double.parseDouble(txtTemperature.getText());
+       Double bloodPressure = Double.parseDouble(txtBloodPressure.getText());
+       int pulse = Integer.parseInt(txtPulse.getText());
+       String date = txtDate.getText();
+       
+       VitalSigns newVs = vitalSignsHistory.addNewVitals();
+       newVs.setTemperature(temperature);
+       newVs.setBloodPressure(bloodPressure);
+       newVs.setPulse(pulse);
+       newVs.setDate(date);
+       
+       //Show user a confirmation dialogue
+       JOptionPane.showMessageDialog(this, "New Vital signs created","Success",JOptionPane.INFORMATION_MESSAGE);
+       
+       //Cleanup the form
+       txtTemperature.setText("");
+       txtBloodPressure.setText("");
+       txtPulse.setText("");
+       txtDate.setText("");
+       
+    }//GEN-LAST:event_saveBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

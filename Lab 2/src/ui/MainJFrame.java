@@ -4,17 +4,22 @@
  */
 package ui;
 
+import model.VitalSignsHistory;
+
 /**
  *
  * @author sravankumarkurapati
  */
 public class MainJFrame extends javax.swing.JFrame {
+    
+    VitalSignsHistory vitalSignsHistory;
 
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
+        vitalSignsHistory = new VitalSignsHistory();
     }
 
     /**
@@ -102,7 +107,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnCreateVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateVitalsActionPerformed
         // TODO add your handling code here:
-        CreateJPanel createJPanel = new CreateJPanel();
+        CreateJPanel createJPanel = new CreateJPanel(vitalSignsHistory);
         splitPane.setRightComponent(createJPanel);
     }//GEN-LAST:event_btnCreateVitalsActionPerformed
 
