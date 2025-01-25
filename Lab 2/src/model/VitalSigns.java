@@ -49,4 +49,9 @@ public class VitalSigns {
         this.pulse = pulse;
     }
 
+    @Override
+    public String toString() {
+        return getDate();
+    }
+
 }

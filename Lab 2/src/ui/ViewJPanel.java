@@ -4,6 +4,7 @@
  */
 package ui;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.VitalSigns;
 import model.VitalSignsHistory;
@@ -52,6 +53,11 @@ public class ViewJPanel extends javax.swing.JPanel {
         lblViewVitalSigns.setText("View Vital Signs");
 
         btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
 
@@ -161,6 +167,25 @@ public class ViewJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = tblVitals.getSelectedRow();
+        System.out.println("Selected index is:"+selectedIndex);
+        if(selectedIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row first", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
+        VitalSigns selectedVitals = (VitalSigns) model.getValueAt(selectedIndex, 0);
+        
+        if(selectedVitals != null){
+            txtTemperature.setText(Double.toString(selectedVitals.getTemperature()));
+            txtBloodPressure.setText(Double.toString(selectedVitals.getBloodPressure()));
+            txtPulse.setText(Integer.toString(selectedVitals.getPulse()));
+            txtDate.setText(selectedVitals.getDate());
+        }
+    }//GEN-LAST:event_btnViewActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -185,7 +210,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         for (VitalSigns vs : vitalSignsHistory.getHistory()){
             System.out.println("To check if data is coming:"+vs.getDate());
             Object[] row = new Object[4];
-            row[0] = vs.getDate();
+            row[0] = vs;
             row[1] = vs.getTemperature();
             row[2] = vs.getBloodPressure();
             row[3] = vs.getPulse();

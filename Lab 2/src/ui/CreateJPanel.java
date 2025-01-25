@@ -5,6 +5,7 @@
 package ui;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.VitalSigns;
 import model.VitalSignsHistory;
 
@@ -143,7 +144,6 @@ public class CreateJPanel extends javax.swing.JPanel {
        txtBloodPressure.setText("");
        txtPulse.setText("");
        txtDate.setText("");
-       
     }//GEN-LAST:event_saveBtnActionPerformed
 
 
