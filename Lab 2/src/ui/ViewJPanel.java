@@ -4,17 +4,24 @@
  */
 package ui;
 
+import javax.swing.table.DefaultTableModel;
+import model.VitalSigns;
+import model.VitalSignsHistory;
+
 /**
  *
  * @author sravankumarkurapati
  */
 public class ViewJPanel extends javax.swing.JPanel {
 
+    VitalSignsHistory vitalSignsHistory;
     /**
      * Creates new form ViewJPanel
      */
-    public ViewJPanel() {
+    public ViewJPanel(VitalSignsHistory vitalSignsHistory) {
         initComponents();
+        this.vitalSignsHistory = vitalSignsHistory;
+        populateTable();
     }
 
     /**
@@ -26,9 +33,9 @@ public class ViewJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        lblViewVitalSigns = new javax.swing.JLabel();
+        btnView = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         lblDate = new javax.swing.JLabel();
         lblTemperature = new javax.swing.JLabel();
         txtDate = new javax.swing.JTextField();
@@ -37,14 +44,16 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtBloodPressure = new javax.swing.JTextField();
         lblPulse = new javax.swing.JLabel();
         txtPulse = new javax.swing.JTextField();
+        jScrollPane = new javax.swing.JScrollPane();
+        tblVitals = new javax.swing.JTable();
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("View Vital Signs");
+        lblViewVitalSigns.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        lblViewVitalSigns.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblViewVitalSigns.setText("View Vital Signs");
 
-        jButton1.setText("View");
+        btnView.setText("View");
 
-        jButton2.setText("Delete");
+        btnDelete.setText("Delete");
 
         lblDate.setText("Date:");
 
@@ -62,23 +71,42 @@ public class ViewJPanel extends javax.swing.JPanel {
 
         txtPulse.setEditable(false);
 
+        tblVitals.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Date", "Temperature", "Blood Pressure", "Pulse"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane.setViewportView(tblVitals);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(35, 35, 35)
-                .addComponent(jButton2)
-                .addGap(23, 23, 23))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnView)
+                        .addGap(38, 38, 38)
+                        .addComponent(btnDelete)
+                        .addGap(30, 30, 30))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
+                        .addGap(105, 105, 105)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -96,19 +124,24 @@ public class ViewJPanel extends javax.swing.JPanel {
                                 .addGap(48, 48, 48)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtPulse, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(151, Short.MAX_VALUE))
+                                    .addComponent(txtDate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(lblViewVitalSigns, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
+                .addComponent(lblViewVitalSigns, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(41, 41, 41)
+                    .addComponent(btnView)
+                    .addComponent(btnDelete))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTemperature)
                     .addComponent(txtTemperature, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -124,22 +157,40 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDate)
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnView;
+    private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JLabel lblBloodPressure;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblPulse;
     private javax.swing.JLabel lblTemperature;
+    private javax.swing.JLabel lblViewVitalSigns;
+    private javax.swing.JTable tblVitals;
     private javax.swing.JTextField txtBloodPressure;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtPulse;
     private javax.swing.JTextField txtTemperature;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable(){
+        
+        DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
+        model.setRowCount(0);
+        for (VitalSigns vs : vitalSignsHistory.getHistory()){
+            System.out.println("To check if data is coming:"+vs.getDate());
+            Object[] row = new Object[4];
+            row[0] = vs.getDate();
+            row[1] = vs.getTemperature();
+            row[2] = vs.getBloodPressure();
+            row[3] = vs.getPulse();
+            model.addRow(row);
+        }
+                
+    }
 }
