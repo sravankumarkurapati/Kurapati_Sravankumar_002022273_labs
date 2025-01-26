@@ -7,8 +7,12 @@ package ui;
 import model.VitalSignsHistory;
 
 /**
+ * The purpose of this JFrame is to display CreateJPanel and ViewJPanel based on
+ * the button Create/View
  *
  * @author sravankumarkurapati
+ * @version 1.0
+ * @since 2025-01-25
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -105,13 +109,21 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * The purpose of this method is to load CreateJPanel
+     *
+     * @param evt
+     */
     private void btnCreateVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateVitalsActionPerformed
         // TODO add your handling code here:
         CreateJPanel createJPanel = new CreateJPanel(vitalSignsHistory);
         splitPane.setRightComponent(createJPanel);
     }//GEN-LAST:event_btnCreateVitalsActionPerformed
-
+    /**
+     * The purpose of this method is to load ViewJPanel
+     *
+     * @param evt
+     */
     private void btnViewVitalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewVitalsActionPerformed
         // TODO add your handling code here:
         ViewJPanel viewJPanel = new ViewJPanel(vitalSignsHistory);

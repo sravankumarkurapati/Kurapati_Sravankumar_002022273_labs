@@ -9,8 +9,12 @@ import model.VitalSigns;
 import model.VitalSignsHistory;
 
 /**
+ * The purpose of this JPanel is to take VitalSigns information and add to
+ * vitalSignsHistory
  *
  * @author sravankumarkurapati
+ * @version 1.0
+ * @since 2025-01-25
  */
 public class CreateJPanel extends javax.swing.JPanel {
 
@@ -122,7 +126,12 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addContainerGap(188, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * This method will take inputs for VitalSigns and save it to
+     * vitalSignsHistory
+     *
+     * @param evt
+     */
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         Double temperature = Double.parseDouble(txtTemperature.getText());
@@ -137,7 +146,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         newVs.setDate(date);
 
         //Show user a confirmation dialogue
-        JOptionPane.showMessageDialog(this, "New Vital signs created", "Success", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "New Vital Signs added.", "Success", JOptionPane.INFORMATION_MESSAGE);
 
         //Cleanup the form
         txtTemperature.setText("");

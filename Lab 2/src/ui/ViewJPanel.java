@@ -10,8 +10,12 @@ import model.VitalSigns;
 import model.VitalSignsHistory;
 
 /**
+ * The purpose of this JPanel is to display saved VitalSigns History and provide
+ * options to View and Delete VitalSigns
  *
  * @author sravankumarkurapati
+ * @version 1.0
+ * @since 2025-01-25
  */
 public class ViewJPanel extends javax.swing.JPanel {
 
@@ -172,7 +176,12 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addContainerGap(50, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * The purpose of this method is to view the selected VitalSigns in the
+     * table
+     *
+     * @param evt
+     */
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
         int selectedIndex = tblVitals.getSelectedRow();
@@ -192,7 +201,12 @@ public class ViewJPanel extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnViewActionPerformed
-
+    /**
+     * The purpose of this method is to delete the selected VitalSigns in the
+     * table
+     *
+     * @param evt
+     */
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int selectedIndex = tblVitals.getSelectedRow();
@@ -207,7 +221,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         //Implement the deletion
         if (selectedVitals != null) {
             vitalSignsHistory.removeVitalSigns(selectedVitals);
-            JOptionPane.showMessageDialog(this, "Vital signs deleted!", "Success", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Vital Sign Deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
         //Update the table
         populateTable();
@@ -231,6 +245,10 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtTemperature;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * The purpose of this method is to set the table rows with saved VitalSigns
+     * from vitalSignsHistory
+     */
     private void populateTable() {
 
         DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
