@@ -207,6 +207,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         //Implement the deletion
         if (selectedVitals != null) {
             vitalSignsHistory.removeVitalSigns(selectedVitals);
+            JOptionPane.showMessageDialog(this, "Vital signs deleted!", "Success", JOptionPane.WARNING_MESSAGE);
         }
         //Update the table
         populateTable();
