@@ -179,17 +179,18 @@ public class ViewJPanel extends javax.swing.JPanel {
         System.out.println("Selected index is:" + selectedIndex);
         if (selectedIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row first", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else {
-            DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
-            VitalSigns selectedVitals = (VitalSigns) model.getValueAt(selectedIndex, 0);
-
-            if (selectedVitals != null) {
-                txtTemperature.setText(Double.toString(selectedVitals.getTemperature()));
-                txtBloodPressure.setText(Double.toString(selectedVitals.getBloodPressure()));
-                txtPulse.setText(Integer.toString(selectedVitals.getPulse()));
-                txtDate.setText(selectedVitals.getDate());
-            }
+            return;
         }
+        DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
+        VitalSigns selectedVitals = (VitalSigns) model.getValueAt(selectedIndex, 0);
+
+        if (selectedVitals != null) {
+            txtTemperature.setText(Double.toString(selectedVitals.getTemperature()));
+            txtBloodPressure.setText(Double.toString(selectedVitals.getBloodPressure()));
+            txtPulse.setText(Integer.toString(selectedVitals.getPulse()));
+            txtDate.setText(selectedVitals.getDate());
+        }
+
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -198,17 +199,18 @@ public class ViewJPanel extends javax.swing.JPanel {
         System.out.println("Selected index is:" + selectedIndex);
         if (selectedIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row first", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else {
-            DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
-            VitalSigns selectedVitals = (VitalSigns) model.getValueAt(selectedIndex, 0);
-
-            //Implement the deletion
-            if (selectedVitals != null) {
-                vitalSignsHistory.removeVitalSigns(selectedVitals);
-            }
-            //Update the table
-            populateTable();
+            return;
         }
+        DefaultTableModel model = (DefaultTableModel) tblVitals.getModel();
+        VitalSigns selectedVitals = (VitalSigns) model.getValueAt(selectedIndex, 0);
+
+        //Implement the deletion
+        if (selectedVitals != null) {
+            vitalSignsHistory.removeVitalSigns(selectedVitals);
+        }
+        //Update the table
+        populateTable();
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
 
