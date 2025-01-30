@@ -160,6 +160,12 @@ public class ManageAccountsJPanel extends javax.swing.JPanel {
          int selectedRow = tblAccounts.getSelectedRow();
          if(selectedRow >= 0){
            Account selectedAccount = (Account)tblAccounts.getValueAt(selectedRow, 0);
+           
+           ViewAccountJPanel panel = new ViewAccountJPanel(userProcessContainer, accountDirectory,selectedAccount);
+           userProcessContainer.add("ViewAccountJPanel",panel);
+           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+           layout.next(userProcessContainer);
+           
          } else {
              JOptionPane.showMessageDialog(null, "Please select an account from the list to view.", "Warning", JOptionPane.WARNING_MESSAGE);
          }
