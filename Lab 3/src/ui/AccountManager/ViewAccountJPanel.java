@@ -5,6 +5,7 @@
 package ui.AccountManager;
 
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.Account;
@@ -147,7 +148,7 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         String routingNumber = txtRoutingNumber.getText();
-        String accountNumber = txtRoutingNumber.getText();
+        String accountNumber = txtAccountNumber.getText();
         String bankName = txtBankName.getText();
         
         if(routingNumber.isBlank() || bankName.isBlank() || accountNumber.isBlank()){
@@ -166,6 +167,12 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
+        
+        //This will reach the previous JPanel and trigger an update
+        Component[] panelStack = userProcessContainer.getComponents();
+        JPanel lastPanel = (JPanel) panelStack[panelStack.length - 1];
+        ManageAccountsJPanel manageAccountsJPanel = (ManageAccountsJPanel) lastPanel;
+        manageAccountsJPanel.populateTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
