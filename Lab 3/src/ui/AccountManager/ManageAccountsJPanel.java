@@ -19,14 +19,15 @@ public class ManageAccountsJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     AccountDirectory accountDirectory;
+
     /**
      * Creates new form ManageAccountsJPanel
      */
-    public ManageAccountsJPanel(JPanel container,AccountDirectory directory) {
+    public ManageAccountsJPanel(JPanel container, AccountDirectory directory) {
         initComponents();
         userProcessContainer = container;
         accountDirectory = directory;
-        
+
         populateTable();
     }
 
@@ -62,6 +63,11 @@ public class ManageAccountsJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblAccounts);
 
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnViewDetails.setText("View Details");
         btnViewDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -141,15 +147,15 @@ public class ManageAccountsJPanel extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int selectedRow = tblAccounts.getSelectedRow();
-        if(selectedRow >=0 ){
+        if (selectedRow >= 0) {
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete the selected account?", "Warning", dialogButton);
-            if(dialogResult == JOptionPane.YES_NO_OPTION){
-                Account selectedAccount  = (Account) tblAccounts.getValueAt(selectedRow,0);
+            if (dialogResult == JOptionPane.YES_NO_OPTION) {
+                Account selectedAccount = (Account) tblAccounts.getValueAt(selectedRow, 0);
                 accountDirectory.deleteAccount(selectedAccount);
                 populateTable();
             }
-            
+
         } else {
             JOptionPane.showMessageDialog(null, "Please select an account from the list.", "Warning", JOptionPane.WARNING_MESSAGE);
         }
@@ -157,19 +163,38 @@ public class ManageAccountsJPanel extends javax.swing.JPanel {
 
     private void btnViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailsActionPerformed
         // TODO add your handling code here:
-         int selectedRow = tblAccounts.getSelectedRow();
-         if(selectedRow >= 0){
-           Account selectedAccount = (Account)tblAccounts.getValueAt(selectedRow, 0);
-           
-           ViewAccountJPanel panel = new ViewAccountJPanel(userProcessContainer, accountDirectory,selectedAccount);
-           userProcessContainer.add("ViewAccountJPanel",panel);
-           CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-           layout.next(userProcessContainer);
-           
-         } else {
-             JOptionPane.showMessageDialog(null, "Please select an account from the list to view.", "Warning", JOptionPane.WARNING_MESSAGE);
-         }
+        int selectedRow = tblAccounts.getSelectedRow();
+        if (selectedRow >= 0) {
+            Account selectedAccount = (Account) tblAccounts.getValueAt(selectedRow, 0);
+
+            ViewAccountJPanel panel = new ViewAccountJPanel(userProcessContainer, accountDirectory, selectedAccount);
+            userProcessContainer.add("ViewAccountJPanel", panel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select an account from the list to view.", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnViewDetailsActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        if (!txtSearchBox.getText().isBlank()) {
+            String accountNumber = txtSearchBox.getText();
+            Account foundAccount = accountDirectory.searchAccount(accountNumber);
+
+            if (foundAccount != null) {
+                ViewAccountJPanel panel = new ViewAccountJPanel(userProcessContainer, accountDirectory, foundAccount);
+                userProcessContainer.add("ViewAccountJPanel", panel);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            } else {
+                  JOptionPane.showMessageDialog(null, "Account not found. Please check the account number and try again.", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+             JOptionPane.showMessageDialog(null, "Please type the account number to view.", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -184,17 +209,17 @@ public class ManageAccountsJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void populateTable() {
-      DefaultTableModel model = (DefaultTableModel)tblAccounts.getModel();
-      model.setRowCount(0);
-      
-      for(Account a: accountDirectory.getAccounts()){
-          Object[] row = new Object[4];
-          row[0] = a;
-          row[1] = a.getRoutingNumber();
-          row[2] = a.getAccountNumber();
-          row[3] = String.valueOf(a.getBalance());
-          
-          model.addRow(row);
-      }
+        DefaultTableModel model = (DefaultTableModel) tblAccounts.getModel();
+        model.setRowCount(0);
+
+        for (Account a : accountDirectory.getAccounts()) {
+            Object[] row = new Object[4];
+            row[0] = a;
+            row[1] = a.getRoutingNumber();
+            row[2] = a.getAccountNumber();
+            row[3] = String.valueOf(a.getBalance());
+
+            model.addRow(row);
+        }
     }
 }
