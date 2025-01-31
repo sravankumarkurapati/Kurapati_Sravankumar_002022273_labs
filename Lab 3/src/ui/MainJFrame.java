@@ -44,6 +44,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         splitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        topJPanel.setBackground(new java.awt.Color(255, 255, 255));
         topJPanel.setMinimumSize(new java.awt.Dimension(50, 50));
 
         btnAccountMng.setText("Open Account Manager Work Area");
@@ -72,6 +73,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         splitPane.setTopComponent(topJPanel);
 
+        userProcessContainer.setBackground(new java.awt.Color(255, 255, 255));
         userProcessContainer.setLayout(new java.awt.CardLayout());
         splitPane.setRightComponent(userProcessContainer);
 

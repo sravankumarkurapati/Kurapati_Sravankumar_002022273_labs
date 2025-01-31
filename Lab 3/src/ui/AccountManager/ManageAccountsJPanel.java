@@ -49,6 +49,8 @@ public class ManageAccountsJPanel extends javax.swing.JPanel {
         txtSearchBox = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Manage Account");
 

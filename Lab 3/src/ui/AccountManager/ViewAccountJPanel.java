@@ -51,6 +51,8 @@ public class ViewAccountJPanel extends javax.swing.JPanel {
         txtBankName = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         lblRoutingNumber.setText("Routing Number");
 
         lblAccountNumber.setText("Account Number");
