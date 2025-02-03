@@ -134,9 +134,21 @@ public class LoginScreen extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+       
+        JPanel selectedPanel = (JPanel) cmbRoles.getSelectedItem();
         
-        
-        
+        if(selectedPanel.getClass() == SupplierWorkAreaJPanel.class){
+            if(selectedSupplier == null){
+                JOptionPane.showMessageDialog(this, "Please select a supplier to login under supplier role.");
+                return;
+            } else{
+                selectedPanel = new SupplierWorkAreaJPanel(mainWorkArea, selectedSupplier);
+            }
+                 
+        }
+        mainWorkArea.add("WorkAreaJPanel", selectedPanel);
+        CardLayout layout = (CardLayout) mainWorkArea.getLayout();
+        layout.next(mainWorkArea);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void cmbRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRolesActionPerformed
@@ -156,8 +168,13 @@ public class LoginScreen extends javax.swing.JPanel {
 
     private void populateRoleCombo() {
         
+      cmbRoles.removeAllItems();
       
-
+      AdminWorkAreaJPanel adminPanel = new AdminWorkAreaJPanel(mainWorkArea,supplierDirectory);
+      SupplierWorkAreaJPanel supplierPanel = new SupplierWorkAreaJPanel(mainWorkArea,selectedSupplier);
+     
+      cmbRoles.addItem(adminPanel);
+      cmbRoles.addItem(supplierPanel);
     }
 
     public void populateSupplierCombo() {
@@ -168,7 +185,17 @@ public class LoginScreen extends javax.swing.JPanel {
 
     private void updateSupplierVisibility() {
         
+        if((cmbRoles.getSelectedItem() == null) || (cmbRoles.getSelectedItem().getClass() == AdminWorkAreaJPanel.class)){
+            selectedSupplier = null;
+            lblSupplier.setVisible(false);
+            cmbSuppliers.setVisible(false);
+            return;
+        }
         
+        if(cmbRoles.getSelectedItem().getClass() == SupplierWorkAreaJPanel.class){
+            lblSupplier.setVisible(true);
+            cmbSuppliers.setVisible(true);
+        }
          //To change body of generated methods, choose Tools | Templates.
     }
 }
