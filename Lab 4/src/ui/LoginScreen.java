@@ -128,7 +128,8 @@ public class LoginScreen extends javax.swing.JPanel {
     private void cmbSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSuppliersActionPerformed
         // TODO add your handling code here:
         
-        
+        if(cmbSuppliers.getSelectedItem() == null) return;
+        selectedSupplier = (Supplier) cmbSuppliers.getSelectedItem();
         
     }//GEN-LAST:event_cmbSuppliersActionPerformed
 

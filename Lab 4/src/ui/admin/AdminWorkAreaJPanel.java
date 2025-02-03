@@ -119,7 +119,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
        LoginScreen loginPanel = (LoginScreen) component;
        loginPanel.populateSupplierCombo();
        
-       CardLayout layout = (CardLayout) workArea.getLayout();
+       CardLayout layout = (CardLayout) mainWorkArea.getLayout();
        layout.previous(mainWorkArea);
                 
     }//GEN-LAST:event_btnLogOutActionPerformed

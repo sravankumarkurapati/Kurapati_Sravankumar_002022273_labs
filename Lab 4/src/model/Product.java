@@ -16,6 +16,8 @@ public class Product {
     private String name;
     private int price;
     private int id;
+    
+    private ArrayList<Feature> features;
 
     private static int count = 0;
     
@@ -23,6 +25,7 @@ public class Product {
         count++;
         id = count;
         
+        features = new ArrayList<Feature>();
     }
 
     public String getName() {
@@ -46,10 +49,28 @@ public class Product {
         this.price = price;
     }
 
+    public ArrayList<Feature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(ArrayList<Feature> features) {
+        this.features = features;
+    }
+
     
     @Override
     public String toString() {
         return name;
     }
+
+    public Feature addNewFeature() {
+        Feature newFeature = new Feature(this);
+    newFeature.setName("New Feature");
+    newFeature.setValue("Type Value here");
+
+    // Add to product's feature list
+    this.getFeatures().add(newFeature);
+        return new Feature(this);
+        }
     
 }
