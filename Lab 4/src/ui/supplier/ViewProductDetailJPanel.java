@@ -32,9 +32,12 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         txtName.setText(this.product.getName());
         txtId.setText(String.valueOf(this.product.getId()));
         txtPrice.setText(String.valueOf(this.product.getPrice()));
-        
-        if(product.getProductLogo()!= null) productLogo.setIcon(this.product.getProductLogo());
-        else productLogo.setText("No logo");
+
+        if (product.getProductLogo() != null) {
+            productLogo.setIcon(this.product.getProductLogo());
+        } else {
+            productLogo.setText("No logo");
+        }
         populateDefaultFeatures();
         refreshTable();
     }
@@ -167,7 +170,7 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
                         .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(productLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtId, txtName});
@@ -227,79 +230,79 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         workArea.remove(this);
         Component[] componentArray = workArea.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        if(component.getClass().equals(ManageProductCatalogJPanel.class)){
-        ManageProductCatalogJPanel manageProductCatalogJPanel = (ManageProductCatalogJPanel) component;
-        manageProductCatalogJPanel.refreshTable();
+        if (component.getClass().equals(ManageProductCatalogJPanel.class)) {
+            ManageProductCatalogJPanel manageProductCatalogJPanel = (ManageProductCatalogJPanel) component;
+            manageProductCatalogJPanel.refreshTable();
         }
         CardLayout layout = (CardLayout) workArea.getLayout();
         layout.previous(workArea);
     }
-    
+
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         product.setPrice(Integer.parseInt(txtPrice.getText()));
         product.setName(txtName.getText());
         saveFeatures();
-        
+
         txtName.setEditable(false);
         txtPrice.setEditable(false);
         btnSave.setEnabled(false);
         tblFeatures.setEnabled(false);
         btnAddFeature.setEnabled(false);
         btnRemoveFeature.setEnabled(false);
-        
-        JOptionPane.showMessageDialog(this, "Product information saved.","Information", JOptionPane.INFORMATION_MESSAGE);
-        
+
+        JOptionPane.showMessageDialog(this, "Product information saved.", "Information", JOptionPane.INFORMATION_MESSAGE);
+
         refreshTable();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void saveFeatures() {
-       DefaultTableModel model = (DefaultTableModel) tblFeatures.getModel();
-       boolean invalidFeature = false;
-       for(int i=0; i<model.getRowCount(); i++){
-           Feature currentFeature = product.getFeatures().get(i);
-           currentFeature.setName(tblFeatures.getValueAt(i, 0).toString());
-           currentFeature.setValue(tblFeatures.getValueAt(i, 1));
-           
-       }
-        
+        DefaultTableModel model = (DefaultTableModel) tblFeatures.getModel();
+        boolean invalidFeature = false;
+        for (int i = 0; i < model.getRowCount(); i++) {
+            Feature currentFeature = product.getFeatures().get(i);
+            currentFeature.setName(tblFeatures.getValueAt(i, 0).toString());
+            currentFeature.setValue(tblFeatures.getValueAt(i, 1));
+
+        }
+
     }
 
-    public void populateDefaultFeatures(){
+    public void populateDefaultFeatures() {
         if (product.getFeatures().isEmpty()) {
-        product.addNewFeature("Color");
-        product.addNewFeature("Warranty");
-        product.addNewFeature("Vendor");
+            product.addNewFeature("Color");
+            product.addNewFeature("Warranty");
+            product.addNewFeature("Vendor");
         }
     }
     private void btnAddFeatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFeatureActionPerformed
         // TODO add your handling code here:
-        
+
         Feature newFeature = product.addNewFeature("New Feature");
-    
+
         saveFeatures();
         refreshTable();
-       
+
     }//GEN-LAST:event_btnAddFeatureActionPerformed
 
     private void btnRemoveFeatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveFeatureActionPerformed
         // TODO add your handling code here:
         saveFeatures();
         int selectedRow = tblFeatures.getSelectedRow();
-        if(selectedRow < 0){
-            JOptionPane.showMessageDialog(this, "Please select a row from the table first","Warning",JOptionPane.WARNING_MESSAGE);
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-       product.getFeatures().remove(selectedRow);
-       refreshTable();
+        product.getFeatures().remove(selectedRow);
+        refreshTable();
     }//GEN-LAST:event_btnRemoveFeatureActionPerformed
 
     public void refreshTable() {
 
         DefaultTableModel model = (DefaultTableModel) tblFeatures.getModel();
         model.setRowCount(0);
-        
-        for(Feature f : product.getFeatures()){
+
+        for (Feature f : product.getFeatures()) {
             Object row[] = new Object[2];
             row[0] = f;
             row[1] = f.getValue() == null ? "Empty" : f.getValue().toString();

@@ -31,7 +31,7 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
 
     Supplier supplier;
     JPanel workArea;
-    
+
     private final JFileChooser fileChooser = new JFileChooser();
     ImageIcon logoImage;
 
@@ -42,10 +42,10 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         initComponents();
         this.supplier = supplier;
         this.workArea = workArea;
-        
-        FileFilter jpegFilter = new FileNameExtensionFilter("JPEG file","jpg","jpeg");
-        FileFilter pngFilter = new FileNameExtensionFilter("PNG file","png","png");
-        
+
+        FileFilter jpegFilter = new FileNameExtensionFilter("JPEG file", "jpg", "jpeg");
+        FileFilter pngFilter = new FileNameExtensionFilter("PNG file", "png", "png");
+
         fileChooser.addChoosableFileFilter(jpegFilter);
         fileChooser.addChoosableFileFilter(pngFilter);
         fileChooser.setFileFilter(pngFilter);
@@ -226,17 +226,17 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int returnVal = fileChooser.showOpenDialog(this);
 
-        if(returnVal == JFileChooser.APPROVE_OPTION) {
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             URL url;
-            try{
+            try {
                 url = file.toURI().toURL();
                 logoImage = new ImageIcon(url);
                 logoImage = new ImageIcon(logoImage.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
 
                 imgLogo.setIcon(logoImage);
-            } catch (MalformedURLException ex){
-                Logger.getLogger(this.getName()).log(Level.SEVERE,null,ex);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

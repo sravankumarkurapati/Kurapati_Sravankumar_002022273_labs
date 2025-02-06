@@ -30,12 +30,14 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
         initComponents();
         this.mainWorkArea = mainWorkArea;
-        
+
         this.supplier = supplier;
-        System.out.println("ui.supplier.SupplierWorkAreaJPanel.<init>()"+supplierDirectory);
+        System.out.println("ui.supplier.SupplierWorkAreaJPanel.<init>()" + supplierDirectory);
         this.supplierDirectory = supplierDirectory;
-        if (supplier != null) lblWelcome.setText("Welcome to Lab 4, "+supplier.getSupplyName());
-        
+        if (supplier != null) {
+            lblWelcome.setText("Welcome to Lab 4, " + supplier.getSupplyName());
+        }
+
 //      masterOrderCatalog = moc;
     }
 
@@ -178,10 +180,10 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnSupplierProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierProfileActionPerformed
         // TODO add your handling code here:
-         SupplierProfileJPanel spjp = new SupplierProfileJPanel(workArea, supplier,supplierDirectory);
-         workArea.add("SupplierProfileJPanel", spjp);
-         CardLayout layout = (CardLayout) workArea.getLayout();
-         layout.next(workArea);
+        SupplierProfileJPanel spjp = new SupplierProfileJPanel(workArea, supplier, supplierDirectory);
+        workArea.add("SupplierProfileJPanel", spjp);
+        CardLayout layout = (CardLayout) workArea.getLayout();
+        layout.next(workArea);
     }//GEN-LAST:event_btnSupplierProfileActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed

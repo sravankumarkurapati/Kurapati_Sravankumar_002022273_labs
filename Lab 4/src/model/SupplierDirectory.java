@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.util.ArrayList;
@@ -12,9 +11,9 @@ import java.util.ArrayList;
  * @author Rushabh
  */
 public class SupplierDirectory {
-    
+
     private ArrayList<Supplier> supplierList;
-    
+
     public SupplierDirectory() {
         supplierList = new ArrayList<Supplier>();
     }
@@ -22,35 +21,35 @@ public class SupplierDirectory {
     public ArrayList<Supplier> getSupplierList() {
         return supplierList;
     }
-    
+
     public Supplier addSupplier() {
         Supplier s = new Supplier();
         supplierList.add(s);
         return s;
     }
-    
+
     public void removeSupplier(Supplier s) {
         supplierList.remove(s);
     }
-    
+
     public Supplier searchSupplier(String keyWord) {
-        for(Supplier s : supplierList) {
-            if(keyWord.equals(s.getSupplyName())) {
+        for (Supplier s : supplierList) {
+            if (keyWord.equals(s.getSupplyName())) {
                 return s;
             }
         }
         return null;
     }
-    
-    public void updateSupplier(Supplier supplier){
-        for(Supplier s : supplierList) {
-            if(supplier.getSupplyName().equals(s.getSupplyName())) {
+
+    public void updateSupplier(Supplier supplier) {
+        for (Supplier s : supplierList) {
+            if (supplier.getSupplyName().equals(s.getSupplyName())) {
                 s.setLogoImage(supplier.getLogoImage());
                 s.setDescription(supplier.getDescription());
-                 System.out.println("Inside"+supplier.getDescription());
-       
+                System.out.println("Inside" + supplier.getDescription());
+
             }
         }
     }
-    
+
 }

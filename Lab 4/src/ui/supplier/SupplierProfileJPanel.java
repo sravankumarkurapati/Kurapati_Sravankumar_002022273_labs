@@ -26,29 +26,34 @@ import model.SupplierDirectory;
  * @author sravankumarkurapati
  */
 public class SupplierProfileJPanel extends javax.swing.JPanel {
-    
+
     JPanel workArea;
     SupplierDirectory supplierDirectory;
     Supplier supplier;
-    
-     private final JFileChooser fileChooser = new JFileChooser();
+
+    private final JFileChooser fileChooser = new JFileChooser();
     ImageIcon logoImage;
+
     /**
      * Creates new form SupplierProfileJPanel
      */
-    public SupplierProfileJPanel(JPanel workArea, Supplier supplier,SupplierDirectory supplierDirectory) {
+    public SupplierProfileJPanel(JPanel workArea, Supplier supplier, SupplierDirectory supplierDirectory) {
         initComponents();
         this.workArea = workArea;
         this.supplier = supplier;
         this.supplierDirectory = supplierDirectory;
+        this.logoImage = supplier.getLogoImage();
         txtName.setText(supplier.getSupplyName());
         txtDescription.setText(supplier.getDescription());
-        if(supplier.getLogoImage() != null) imgLogo.setIcon(supplier.getLogoImage());
-        else imgLogo.setText("No logo");
-        
-        FileFilter jpegFilter = new FileNameExtensionFilter("JPEG file","jpg","jpeg");
-        FileFilter pngFilter = new FileNameExtensionFilter("PNG file","png","png");
-        
+        if (supplier.getLogoImage() != null) {
+            imgLogo.setIcon(supplier.getLogoImage());
+        } else {
+            imgLogo.setText("No logo");
+        }
+
+        FileFilter jpegFilter = new FileNameExtensionFilter("JPEG file", "jpg", "jpeg");
+        FileFilter pngFilter = new FileNameExtensionFilter("PNG file", "png", "png");
+
         fileChooser.addChoosableFileFilter(jpegFilter);
         fileChooser.addChoosableFileFilter(pngFilter);
         fileChooser.setFileFilter(pngFilter);
@@ -191,17 +196,17 @@ public class SupplierProfileJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int returnVal = fileChooser.showOpenDialog(this);
 
-        if(returnVal == JFileChooser.APPROVE_OPTION) {
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             URL url;
-            try{
+            try {
                 url = file.toURI().toURL();
                 logoImage = new ImageIcon(url);
                 logoImage = new ImageIcon(logoImage.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH));
 
                 imgLogo.setIcon(logoImage);
-            } catch (MalformedURLException ex){
-                Logger.getLogger(this.getName()).log(Level.SEVERE,null,ex);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(this.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -219,10 +224,9 @@ public class SupplierProfileJPanel extends javax.swing.JPanel {
         supplier.setDescription(txtDescription.getText());
         supplier.setLogoImage(logoImage);
         System.out.println(supplier.getDescription());
-       
-                
-       this.supplierDirectory.updateSupplier(supplier);
-       JOptionPane.showMessageDialog(this, "Supplier profile information saved.","Information", JOptionPane.INFORMATION_MESSAGE);
+
+        this.supplierDirectory.updateSupplier(supplier);
+        JOptionPane.showMessageDialog(this, "Supplier profile information saved.", "Information", JOptionPane.INFORMATION_MESSAGE);
         workArea.remove(this);
         CardLayout layout = (CardLayout) workArea.getLayout();
         layout.previous(workArea);
@@ -230,7 +234,7 @@ public class SupplierProfileJPanel extends javax.swing.JPanel {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-         workArea.remove(this);
+        workArea.remove(this);
         CardLayout layout = (CardLayout) workArea.getLayout();
         layout.previous(workArea);
     }//GEN-LAST:event_backButtonActionPerformed
