@@ -72,10 +72,10 @@ public class Product {
     public String toString() {
         return name;
     }
-
-    public Feature addNewFeature() {
+    
+    public Feature addNewFeature(String featureName) {
         Feature newFeature = new Feature(this);
-        newFeature.setName("New Feature");
+        newFeature.setName(featureName);
         newFeature.setValue("Type Value here");
 
     // Add to product's feature list

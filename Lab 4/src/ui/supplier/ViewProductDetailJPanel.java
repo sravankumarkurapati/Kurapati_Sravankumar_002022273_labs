@@ -35,7 +35,7 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         
         if(product.getProductLogo()!= null) productLogo.setIcon(this.product.getProductLogo());
         else productLogo.setText("No logo");
-
+        populateDefaultFeatures();
         refreshTable();
     }
 
@@ -253,21 +253,27 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
     private void saveFeatures() {
        DefaultTableModel model = (DefaultTableModel) tblFeatures.getModel();
-        
+       boolean invalidFeature = false;
        for(int i=0; i<model.getRowCount(); i++){
            Feature currentFeature = product.getFeatures().get(i);
            currentFeature.setName(tblFeatures.getValueAt(i, 0).toString());
            currentFeature.setValue(tblFeatures.getValueAt(i, 1));
+           
        }
         
     }
 
+    public void populateDefaultFeatures(){
+        if (product.getFeatures().isEmpty()) {
+        product.addNewFeature("Color");
+        product.addNewFeature("Warranty");
+        product.addNewFeature("Vendor");
+        }
+    }
     private void btnAddFeatureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFeatureActionPerformed
         // TODO add your handling code here:
-        Feature newFeature = product.addNewFeature();
-        newFeature.setName("New Feature");
-        newFeature.setValue("Type Value here");
-         
+        
+        Feature newFeature = product.addNewFeature("New Feature");
     
         saveFeatures();
         refreshTable();
