@@ -42,4 +42,15 @@ public class SupplierDirectory {
         return null;
     }
     
+    public void updateSupplier(Supplier supplier){
+        for(Supplier s : supplierList) {
+            if(supplier.getSupplyName().equals(s.getSupplyName())) {
+                s.setLogoImage(supplier.getLogoImage());
+                s.setDescription(supplier.getDescription());
+                 System.out.println("Inside"+supplier.getDescription());
+       
+            }
+        }
+    }
+    
 }

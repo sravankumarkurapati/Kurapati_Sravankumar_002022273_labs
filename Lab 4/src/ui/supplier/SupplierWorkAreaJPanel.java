@@ -9,6 +9,7 @@ import model.Supplier;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
+import model.SupplierDirectory;
 import ui.LoginScreen;
 
 /**
@@ -19,17 +20,20 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
     JPanel mainWorkArea;
     Supplier supplier;
+    SupplierDirectory supplierDirectory;
 //    MasterOrderCatalog masterOrderCatalog;
 
     /**
      * Creates new form ProductManagerWorkAreaJPanel
      */
-    public SupplierWorkAreaJPanel(JPanel mainWorkArea, Supplier supplier) {
+    public SupplierWorkAreaJPanel(JPanel mainWorkArea, Supplier supplier, SupplierDirectory supplierDirectory) {
 
         initComponents();
         this.mainWorkArea = mainWorkArea;
         
         this.supplier = supplier;
+        System.out.println("ui.supplier.SupplierWorkAreaJPanel.<init>()"+supplierDirectory);
+        this.supplierDirectory = supplierDirectory;
         if (supplier != null) lblWelcome.setText("Welcome to Lab 4, "+supplier.getSupplyName());
         
 //      masterOrderCatalog = moc;
@@ -75,7 +79,6 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         btnSupplierProfile.setText("Update Profile");
-        btnSupplierProfile.setEnabled(false);
         btnSupplierProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSupplierProfileActionPerformed(evt);
@@ -167,10 +170,18 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 //        workArea.add("ProductReportJPanelSupplier", prjp);
 //        CardLayout layout = (CardLayout)workArea.getLayout();
 //        layout.next(userProcessContainer);
+//         SupplierProfileJPanel spjp = new SupplierProfileJPanel(workArea, supplier);
+//         workArea.add("SupplierProfileJPanel", spjp);
+//         CardLayout layout = (CardLayout) workArea.getLayout();
+//         layout.next(workArea);
     }//GEN-LAST:event_PerformanceActionPerformed
 
     private void btnSupplierProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierProfileActionPerformed
         // TODO add your handling code here:
+         SupplierProfileJPanel spjp = new SupplierProfileJPanel(workArea, supplier,supplierDirectory);
+         workArea.add("SupplierProfileJPanel", spjp);
+         CardLayout layout = (CardLayout) workArea.getLayout();
+         layout.next(workArea);
     }//GEN-LAST:event_btnSupplierProfileActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
