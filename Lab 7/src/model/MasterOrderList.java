@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author sravankumarkurapati
  */
-class MasterOrderList {
+public class MasterOrderList {
     
     ArrayList<Order> orderList;
     
